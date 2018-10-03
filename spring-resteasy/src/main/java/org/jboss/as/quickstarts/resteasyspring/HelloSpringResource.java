@@ -47,16 +47,17 @@ public class HelloSpringResource {
     @GET
     @Produces("text/html")
     public Response getDefault() {
-        String msg = "Hello. <br> Please try <a href='http://localhost:8080/jboss-spring-resteasy/hello?name=yourname'>jboss-spring-resteasy/hello?name=yourname</a>"
-            + "<br> Or try <a href='http://localhost:8080/jboss-spring-resteasy/basic'>jboss-spring-resteasy/basic</a>"
-            + "<br> Or try <a href='http://localhost:8080/jboss-spring-resteasy/queryParam?param=query'>jboss-spring-resteasy/queryParam?param=query</a>"
-            + "<br> Or try <a href='http://localhost:8080/jboss-spring-resteasy/matrixParam;param=matrix'>jboss-spring-resteasy/matrixParam;param=matrix</a>"
-            + "<br> Or try <a href='http://localhost:8080/jboss-spring-resteasy/uriParam/789'>jboss-spring-resteasy/uriParam/789</a>"
-            + "<br> Or try <a href='http://localhost:8080/jboss-spring-resteasy/locating/hello?name=yourname'>jboss-spring-resteasy/locating/hello?name=yourname</a>"
-            + "<br> Or try <a href='http://localhost:8080/jboss-spring-resteasy/locating/basic'>jboss-spring-resteasy/locating/basic</a>"
-            + "<br> Or try <a href='http://localhost:8080/jboss-spring-resteasy/locating/queryParam?param=query'>jboss-spring-resteasy/locating/queryParam?param=query</a>"
-            + "<br> Or try <a href='http://localhost:8080/jboss-spring-resteasy/locating/matrixParam;param=matrix'>jboss-spring-resteasy/locating/matrixParam;param=matrix</a>"
-            + "<br> Or try <a href='http://localhost:8080/jboss-spring-resteasy/locating/uriParam/789'>jboss-spring-resteasy/locating/uriParam/789</a>";
+        String msg = "Hello. <br>"
+        	+ " Please try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/hello?name=yourname'>jboss-spring-resteasy/hello?name=yourname</a>"
+            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/basic'>jboss-spring-resteasy/basic</a>"
+            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/queryParam?param=query'>jboss-spring-resteasy/queryParam?param=query</a>"
+            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/matrixParam;param=matrix'>jboss-spring-resteasy/matrixParam;param=matrix</a>"
+            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/uriParam/789'>jboss-spring-resteasy/uriParam/789</a>"
+            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/hello?name=yourname'>jboss-spring-resteasy/locating/hello?name=yourname</a>"
+            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/basic'>jboss-spring-resteasy/locating/basic</a>"
+            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/queryParam?param=query'>jboss-spring-resteasy/locating/queryParam?param=query</a>"
+            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/matrixParam;param=matrix'>jboss-spring-resteasy/locating/matrixParam;param=matrix</a>"
+            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/uriParam/789'>jboss-spring-resteasy/locating/uriParam/789</a>";
         System.out.println("getDefault()");
         return Response.ok(msg).build();
     }
