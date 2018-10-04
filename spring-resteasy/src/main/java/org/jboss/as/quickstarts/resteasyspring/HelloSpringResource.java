@@ -36,7 +36,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Path("/")
 public class HelloSpringResource {
 	private static int allrequests = 0;
-	private static int biosense = 0;
+	private static int nvdrs = 0;
 	private static int submissions = 0;
 	private static int accepted = 0;
 	private static int rejected = 0;
@@ -53,20 +53,20 @@ public class HelloSpringResource {
     @Produces("text/html")
     public Response getDefault() {
         String msg = "Hello. Supported RESTful methods include:<br>"
-        	+ "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/status'>jboss-spring-resteasy/status</a> - Show data submission status<br>"
-        	+ "PUT <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/deathrecord'>jboss-spring-resteasy/deathrecord</a> - Submit mortality data to BioSense<br>"
+        	+ "GET <a href='http://nvdrs-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/status'>jboss-spring-resteasy/status</a> - Show data submission status<br>"
+        	+ "PUT <a href='http://nvdrs-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/deathrecord'>jboss-spring-resteasy/deathrecord</a> - Submit mortality data to NVDRS<br>"
         	+ "<br>"
         	+ "The following methods were inherited from the JBoss EAP Quickstart:<br>"
-        	+ "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/hello?name=yourname'>jboss-spring-resteasy/hello?name=yourname</a> - 'Hello World' test method.<br>"
-            + "GET or PUT <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/basic'>jboss-spring-resteasy/basic</a><br>"
-            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/queryParam?param=query'>jboss-spring-resteasy/queryParam?param=query</a><br>"
-            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/matrixParam;param=matrix'>jboss-spring-resteasy/matrixParam;param=matrix</a><br>"
-            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/uriParam/789'>jboss-spring-resteasy/uriParam/789</a><br>"
-            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/hello?name=yourname'>jboss-spring-resteasy/locating/hello?name=yourname</a><br>"
-            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/basic'>jboss-spring-resteasy/locating/basic</a><br>"
-            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/queryParam?param=query'>jboss-spring-resteasy/locating/queryParam?param=query</a><br>"
-            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/matrixParam;param=matrix'>jboss-spring-resteasy/locating/matrixParam;param=matrix</a><br>"
-            + "GET<a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/uriParam/789'>jboss-spring-resteasy/locating/uriParam/789</a><br>";
+        	+ "GET <a href='http://nvdrs-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/hello?name=yourname'>jboss-spring-resteasy/hello?name=yourname</a> - 'Hello World' test method.<br>"
+            + "GET or PUT <a href='http://nvdrs-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/basic'>jboss-spring-resteasy/basic</a><br>"
+            + "GET <a href='http://nvdrs-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/queryParam?param=query'>jboss-spring-resteasy/queryParam?param=query</a><br>"
+            + "GET <a href='http://nvdrs-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/matrixParam;param=matrix'>jboss-spring-resteasy/matrixParam;param=matrix</a><br>"
+            + "GET <a href='http://nvdrs-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/uriParam/789'>jboss-spring-resteasy/uriParam/789</a><br>"
+            + "GET <a href='http://nvdrs-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/hello?name=yourname'>jboss-spring-resteasy/locating/hello?name=yourname</a><br>"
+            + "GET <a href='http://nvdrs-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/basic'>jboss-spring-resteasy/locating/basic</a><br>"
+            + "GET <a href='http://nvdrs-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/queryParam?param=query'>jboss-spring-resteasy/locating/queryParam?param=query</a><br>"
+            + "GET <a href='http://nvdrs-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/matrixParam;param=matrix'>jboss-spring-resteasy/locating/matrixParam;param=matrix</a><br>"
+            + "GET<a href='http://nvdrs-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/uriParam/789'>jboss-spring-resteasy/locating/uriParam/789</a><br>";
         System.out.println("getDefault()");
         return Response.ok(msg).build();
     }
@@ -75,16 +75,16 @@ public class HelloSpringResource {
     @Path("status")
     @Produces("text/plain")
     public Response showStatus() {
-    	String reportPage = "BioSense death record submission status:\n"
+    	String reportPage = "NVDRS death record submission status:\n"
     		+ "  " + String.format("%d", submissions) + " records submitted\n"
     		+ "    " + String.format("%d", accepted) + " records accepted, and\n"
     		+ "    " + String.format("%d", rejected) + " records rejected\n"
     		+ "\n"
     		+ "REST service status:\n"
     		+ "  " + String.format("%d", allrequests) + " total requests\n"
-    		+ "  " + String.format("%d", biosense) + " biosense requests\n";
+    		+ "  " + String.format("%d", nvdrs) + " NVDRS requests\n";
     	allrequests++;
-    	biosense++;
+    	nvdrs++;
     	return Response.ok(reportPage).build();
     }
     
@@ -93,7 +93,7 @@ public class HelloSpringResource {
     @Consumes("application/json")
     public void putDeathRecord(String body) {
     	allrequests++;
-    	biosense++;
+    	nvdrs++;
     	submissions++;
     	accepted++;
     	System.out.println(body);
