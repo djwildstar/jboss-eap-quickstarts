@@ -35,6 +35,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Path("/")
 public class HelloSpringResource {
+	private static int submissions = 0;
+	private static int accepted = 0;
+	private static int rejected = 0;
 
     @Autowired
     GreetingBean greetingBean;
@@ -70,13 +73,19 @@ public class HelloSpringResource {
     @Path("status")
     @Produces("text/plain")
     public Response showStatus() {
-    	return Response.ok().build();
+    	String reportPage = "Death record submission status:\n"
+    		+ "  " + sprintf(submissions) + " records submitted\n"
+    		+ "    " + sprintf(accepted) + " records accepted, and\n"
+    		+ "    " + sprintf(rejected) + " records rejected\n";
+    	return Response.ok(reportPage).build();
     }
     
     @PUT
     @Path("deathrecord")
     @Consumes("application/json")
     public void putDeathRecord(String body) {
+    	submissions++;
+    	accepted++;
     	System.out.println(body);
     }
 
