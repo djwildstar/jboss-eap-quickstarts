@@ -35,6 +35,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Path("/")
 public class HelloSpringResource {
+	private static int allrequests = 0;
+	private static int biosense = 0;
 	private static int submissions = 0;
 	private static int accepted = 0;
 	private static int rejected = 0;
@@ -73,11 +75,16 @@ public class HelloSpringResource {
     @Path("status")
     @Produces("text/plain")
     public Response showStatus() {
-    	String reportPage = "Death record submission status:\n"
+    	String reportPage = "BioSense death record submission status:\n"
     		+ "  " + String.format("%d", submissions) + " records submitted\n"
     		+ "    " + String.format("%d", accepted) + " records accepted, and\n"
-    		+ "    " + String.format("%d", rejected) + " records rejected\n";
-    	rejected++;
+    		+ "    " + String.format("%d", rejected) + " records rejected\n"
+    		+ "\n"
+    		+ "REST service status:\n"
+    		+ "  " + String.format("%d", allrequests) + " total requests\n"
+    		+ "  " + String.format("%d", biosense) + " biosense requests\n";
+    	allrequests++;
+    	biosense++;
     	return Response.ok(reportPage).build();
     }
     
@@ -85,6 +92,8 @@ public class HelloSpringResource {
     @Path("deathrecord")
     @Consumes("application/json")
     public void putDeathRecord(String body) {
+    	allrequests++;
+    	biosense++;
     	submissions++;
     	accepted++;
     	System.out.println(body);
@@ -94,6 +103,7 @@ public class HelloSpringResource {
     @Path("hello")
     @Produces("text/plain")
     public Response sayHello(@QueryParam("name") String name) {
+    	allrequests++;
         String greetingMsg = greetingBean.greet(name);
         System.out.println("Sending greeing: " + greetingMsg);
         return Response.ok(greetingMsg).build();
@@ -103,6 +113,7 @@ public class HelloSpringResource {
     @Path("basic")
     @Produces("text/plain")
     public String getBasic() {
+    	allrequests++;
         System.out.println("getBasic()");
         return "basic";
     }
@@ -111,6 +122,7 @@ public class HelloSpringResource {
     @Path("basic")
     @Consumes("text/plain")
     public void putBasic(String body) {
+    	allrequests++;
         System.out.println(body);
     }
 
@@ -118,6 +130,7 @@ public class HelloSpringResource {
     @Path("queryParam")
     @Produces("text/plain")
     public String getQueryParam(@QueryParam("param") String param) {
+    	allrequests++;
         return param;
     }
 
@@ -125,6 +138,7 @@ public class HelloSpringResource {
     @Path("matrixParam")
     @Produces("text/plain")
     public String getMatrixParam(@MatrixParam("param") String param) {
+    	allrequests++;
         return param;
     }
 
@@ -132,6 +146,7 @@ public class HelloSpringResource {
     @Path("uriParam/{param}")
     @Produces("text/plain")
     public int getUriParam(@PathParam("param") int param) {
+    	allrequests++;
         return param;
     }
 
