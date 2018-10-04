@@ -74,9 +74,9 @@ public class HelloSpringResource {
     @Produces("text/plain")
     public Response showStatus() {
     	String reportPage = "Death record submission status:\n"
-    		+ "  " + sprintf(submissions) + " records submitted\n"
-    		+ "    " + sprintf(accepted) + " records accepted, and\n"
-    		+ "    " + sprintf(rejected) + " records rejected\n";
+    		+ "  " + String.format("%d", submissions) + " records submitted\n"
+    		+ "    " + String.format("%d", accepted) + " records accepted, and\n"
+    		+ "    " + String.format("%d", rejected) + " records rejected\n";
     	rejected++;
     	return Response.ok(reportPage).build();
     }
