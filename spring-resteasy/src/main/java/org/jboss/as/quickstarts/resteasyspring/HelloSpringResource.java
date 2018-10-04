@@ -47,19 +47,37 @@ public class HelloSpringResource {
     @GET
     @Produces("text/html")
     public Response getDefault() {
-        String msg = "Hello. <br>"
-        	+ " Please try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/hello?name=yourname'>jboss-spring-resteasy/hello?name=yourname</a>"
-            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/basic'>jboss-spring-resteasy/basic</a>"
-            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/queryParam?param=query'>jboss-spring-resteasy/queryParam?param=query</a>"
-            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/matrixParam;param=matrix'>jboss-spring-resteasy/matrixParam;param=matrix</a>"
-            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/uriParam/789'>jboss-spring-resteasy/uriParam/789</a>"
-            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/hello?name=yourname'>jboss-spring-resteasy/locating/hello?name=yourname</a>"
-            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/basic'>jboss-spring-resteasy/locating/basic</a>"
-            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/queryParam?param=query'>jboss-spring-resteasy/locating/queryParam?param=query</a>"
-            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/matrixParam;param=matrix'>jboss-spring-resteasy/locating/matrixParam;param=matrix</a>"
-            + "<br> Or try <a href='http://biosense-fhir-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/uriParam/789'>jboss-spring-resteasy/locating/uriParam/789</a>";
+        String msg = "Hello. Supported RESTful methods include:<br>"
+        	+ "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/status'>jboss-spring-resteasy/status</a> - Show data submission status<br>"
+        	+ "PUT <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/deathrecord'>jboss-spring-resteasy/deathrecord</a> - Submit mortality data to BioSense<br>"
+        	+ "<br>"
+        	+ "The following methods were inherited from the JBoss EAP Quickstart:<br>"
+        	+ "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/hello?name=yourname'>jboss-spring-resteasy/hello?name=yourname</a> - 'Hello World' test method.<br>"
+            + "GET or PUT <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/basic'>jboss-spring-resteasy/basic</a><br>"
+            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/queryParam?param=query'>jboss-spring-resteasy/queryParam?param=query</a><br>"
+            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/matrixParam;param=matrix'>jboss-spring-resteasy/matrixParam;param=matrix</a><br>"
+            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/uriParam/789'>jboss-spring-resteasy/uriParam/789</a><br>"
+            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/hello?name=yourname'>jboss-spring-resteasy/locating/hello?name=yourname</a><br>"
+            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/basic'>jboss-spring-resteasy/locating/basic</a><br>"
+            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/queryParam?param=query'>jboss-spring-resteasy/locating/queryParam?param=query</a><br>"
+            + "GET <a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/matrixParam;param=matrix'>jboss-spring-resteasy/locating/matrixParam;param=matrix</a><br>"
+            + "GET<a href='http://biosense-restful-ha-team6.services-dev.cdc.gov/jboss-spring-resteasy/locating/uriParam/789'>jboss-spring-resteasy/locating/uriParam/789</a><br>";
         System.out.println("getDefault()");
         return Response.ok(msg).build();
+    }
+    
+    @GET
+    @Path("status")
+    @Produces("text/plain")
+    public Response showStatus() {
+    	return Response.ok().build();
+    }
+    
+    @PUT
+    @Path("deathrecord")
+    @Consumes("application/json")
+    public void putDeathRecord(String body) {
+    	System.out.println(body);
     }
 
     @GET
