@@ -77,6 +77,7 @@ public class HelloSpringResource {
     		+ "  " + sprintf(submissions) + " records submitted\n"
     		+ "    " + sprintf(accepted) + " records accepted, and\n"
     		+ "    " + sprintf(rejected) + " records rejected\n";
+    	rejected++;
     	return Response.ok(reportPage).build();
     }
     
